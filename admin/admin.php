@@ -9,6 +9,7 @@ include_once('includes/header.php');
     // Ajouter un article
     // Si la variable get action existe on affiche le formulaire
     if (isset($_GET['action'])) {
+        // si action correspond à add_article
         if ($_GET['action'] == 'add_article') {
             // On se connexte à la bdd
             require_once('includes/database.php');
@@ -61,8 +62,20 @@ include_once('includes/header.php');
             </form>
 
             <?php
+            // sinon si action correspond à update_delete
+        }elseif ($_GET['action'] == 'update_delete') {
+            
+            $req_all_article
+            // On se connexte à la bdd
+            require_once('includes/database.php');
+            // Si on clique sur le bouton update on affiche le formulaire de modification
+            if (isset($_POST['update'])) {
+
+            }
         }
     }
+
+    
     ?>
 </div>
 

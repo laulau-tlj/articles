@@ -33,8 +33,7 @@
         <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="/pages/index.php">Home</a>
             <a class="nav-link" href="?action=add_article">New articles</a>
-            <a class="nav-link" href="?action=update_article">Update</a>
-            <a class="nav-link disabled">Delete</a>
+            <a class="nav-link" href="?action=update_delete">Update or delete</a>
         </div>
         </div>
     </div>
