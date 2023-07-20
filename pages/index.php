@@ -43,8 +43,11 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $response->titre  ?></h5>
-                    <p class="card-text"><?php echo substr($response->description, 0,100)  ?></p>
-                    <a href="plus.php?titre= echo $response->titre ?>, & description=<?php echo $response->description ?>, & image_name=<?php echo $response->image_name ?>" class="btn btn-primary">Voir plus</a>
+                    <p class="card-text"><?php echo substr($response->description, 0,30)  ?></p>
+                    <?php
+                    // Je récupère les données dans l'URL
+                    ?>
+                    <a href="plus.php?titre=<?php echo $response->titre ?>, & description=<?php echo $response->description ?>, & image_name=<?php echo $response->image_name ?>" class="btn btn-primary">Voir plus</a>
                 </div>
             </div>
         <?php }
