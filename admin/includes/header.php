@@ -31,7 +31,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/admin/admin.php">Home</a>
+            <a class="nav-link active" aria-current="page" href="/pages/index.php">Home</a>
             <a class="nav-link" href="?action=add_article">New articles</a>
             <a class="nav-link" href="?action=update_article">Update</a>
             <a class="nav-link disabled">Delete</a>
