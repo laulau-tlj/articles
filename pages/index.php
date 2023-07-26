@@ -36,7 +36,7 @@
         while ($response = $req->fetch(PDO::FETCH_OBJ)) { ?>
             <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src="../admin/images/<?php echo $response->image_name ?>" class="img-fluid"/>
+                    <img width="100" height="100"  src="../admin/images/<?php echo $response->image_name ?>" class="img-fluid"/>
                     <a href="#!">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>

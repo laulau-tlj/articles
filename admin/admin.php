@@ -15,13 +15,13 @@ include_once('includes/header.php');
             require_once('includes/database.php');
             // Si on clique sur le bouton submit, on récupère les données du formulaire
             if (isset($_POST['submit'])) {
-
+                // On extrait les differentes variables $_POST du formulaire
                 extract($_POST);
 
                 // print_r($_FILES['fichier']);
                 // Variable qui va contenir l'image
                 $content_dir = 'images/';
-                // le nom de l'image
+                // Récuperation d'un fichier par le nom de l'image
                 $tmp_file = $_FILES['fichier']['tmp_name'];
 
             // Gestion des erreurs de l'image
@@ -30,7 +30,7 @@ include_once('includes/header.php');
                     exit('Le fichier est introuvable');
                 }
 
-                // On récupère le type de l'image
+                // On récupère le fichier par le type de l'image
                 $type_file = $_FILES['fichier']['type'];
 
                 // On verifie l'extension ou le format de l'image du fichier 
@@ -38,7 +38,7 @@ include_once('includes/header.php');
                     exit("Ce fichier n'est pas au bon format");
                 }
 
-                // On stock le nom du fichier 
+                // On crée le nouveau nom du fichier  
                 $name_file = time().'.jpg';
 
                 // On enregistre l'image dans la variable content_dir
@@ -54,6 +54,8 @@ include_once('includes/header.php');
             }
             ?>
             <h3>Ajouter un article</h3><br>
+            <!-- enctype pour dire au navigateur que le formulaire va upload des fichiers  -->
+           
             <form method="POST" action="" enctype="multipart/form-data" style="border: #D3D3D3 solid 1px; padding: 3%; border-radius: 5px">
                 <input type="text" name="titre" id="" placeholder="Entrer le nom de l'article" required="" class="form form-control"><br>
                 <textarea name="description" id="" placeholder="Entrer la description de l'article" class="form form-control"></textarea><br>
@@ -62,7 +64,7 @@ include_once('includes/header.php');
             </form>
 
             <?php
-            // sinon si action correspond à update_delete
+        // sinon si action correspond à update_delete
         }elseif ($_GET['action'] == 'update_delete') {
             // Connexion à la bdd
             require_once('includes/database.php');
