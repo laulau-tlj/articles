@@ -48,14 +48,13 @@ include_once('includes/header.php');
 
                 // On stock dans la bdd
                 $save_article = $db->prepare('INSERT INTO all_articles(titre,description,image_name) VALUES(?,?,?)');
-
                 $save_article->execute(array($titre,$description,$name_file));
                 echo('Opération réussie avec succes !');
             }
             ?>
+
             <h3>Ajouter un article</h3><br>
             <!-- enctype pour dire au navigateur que le formulaire va upload des fichiers  -->
-           
             <form method="POST" action="" enctype="multipart/form-data" style="border: #D3D3D3 solid 1px; padding: 3%; border-radius: 5px">
                 <input type="text" name="titre" id="" placeholder="Entrer le nom de l'article" required="" class="form form-control"><br>
                 <textarea name="description" id="" placeholder="Entrer la description de l'article" class="form form-control"></textarea><br>
@@ -63,9 +62,12 @@ include_once('includes/header.php');
                 <input type="submit" name="submit" class="btn btn-primary">
             </form>
 
+
+
             <?php
+        }
         // sinon si action correspond à update_delete
-        }elseif ($_GET['action'] == 'update_delete') {
+        elseif ($_GET['action'] == 'update_delete') {
             // Connexion à la bdd
             require_once('includes/database.php');
             // On récupère les articles de la table
@@ -104,13 +106,14 @@ include_once('includes/header.php');
             <?php
             }  ?>
             </table>
+
 <?php
         }
         // sinon si action correspond à delete
         elseif ($_GET['action'] == 'delete') {
             // Connexion à la bdd
             require_once('includes/database.php');
-            // On récupère les articles de la table
+            // On supprime l'article de la table
             $delete_art = $db->prepare('DELETE FROM all_articles WHERE id=?');
             // On execute la requêtte
             $delete_art->execute(array($_GET['id']));
@@ -125,8 +128,8 @@ include_once('includes/header.php');
             if (isset($_POST['submit'])) {
                 // Extraire le contenu de la variable $_POST
                 extract($_POST);
-                // Requêtte de modofication
-                $update_art = $db->prepare('UPDATE all_articles set titre=? and description=? WHERE id=?');
+                // Requêtte de modification
+                $update_art = $db->prepare('UPDATE all_articles set titre=?, description=? WHERE id=?');
                 // On execute la requêtte
                 $update_art->execute(array($titre,$description,$_GET['id']));
                 // On redirige
@@ -149,7 +152,31 @@ include_once('includes/header.php');
             </form>
 
 
-<?php
+    <?php
+        }
+        // Si l'action search existe
+        elseif ($_GET['action'] == 'search') {
+            // Si on fait la recherche
+            if (isset($_POST['submit']) && !empty($_POST['id'])) {
+                // Extraire le contenu de la variable $_POST donc l'id
+                extract(array($_POST['id']));
+                // On applicaque la fonction CleanString
+                $idRecherche = ($_POST['id']);
+                // On récupère l'url en concatenant avec l'id
+                $url = "http://localhost/articles/api.php/$idRecherche";
+                $raw = file_get_contents($url);
+                echo json_encode($raw);
+
+            }
+            ?>
+            <form action="" method="POST" style="border: #D3D3D3 solid 1px; padding: 3%; border-radius: 5px">
+                <input type="number" name="id" placeholder="Entrer l'id de l'article" required="" class="form form-control" /> <br>
+                <input type="submit" name="submit" />
+            </form>
+</body>
+</html>
+
+            <?php
         }
     }
 
